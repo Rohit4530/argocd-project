@@ -41,23 +41,23 @@ resource "helm_release" "nginx_ingress" {
   ]
 }
 
-resource "kubernetes_manifest" "nginx_app" {
+resource "kubernetes_manifest" "wordpress_app" {
   manifest = {
     apiVersion = "argoproj.io/v1alpha1"
     kind       = "Application"
     metadata = {
-      name      = "nginx-app"
+      name      = "wordpress-app"
       namespace = "argocd"
     }
     spec = {
       project = "default"
       source = {
         repoURL        = "https://github.com/Rohit4530/argocd-project.git"
-        targetRevision = "master"
-        path           = "argocd-applications/helm/nginx"
+        targetRevision = "main"
+        path           = "argocd-applications/v04-project"
         helm = {
           releaseName = "application-from-helm"
-          valueFiles  = ["custom-values.yaml"]
+         #valueFiles  = ["custom-values.yaml"]
         }
       }
       destination = {
