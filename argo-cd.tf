@@ -57,7 +57,6 @@ resource "kubernetes_manifest" "wordpress_app" {
         path           = "argocd-applications/v04-project/wordpress-chart"
         helm = {
           releaseName = "application-from-helm"
-         #valueFiles  = ["custom-values.yaml"]
         }
       }
       destination = {
@@ -73,4 +72,35 @@ resource "kubernetes_manifest" "wordpress_app" {
     }
   }
 }
-
+resource "kubernetes_manifest" "nginx_app" {
+  manifest = {
+    apiVersion = "argoproj.io/v1alpha1"
+    kind       = "Application"
+    metadata = {
+      name      = "nginx-app"
+      namespace = "argocd"
+    }
+    spec = {
+      project = "default"
+      source = {
+        repoURL        = "https://github.com/Rohit4530/argocd-project.git"
+        targetRevision = "main"
+        path           = "argocd-applications/v03-project/nginx"
+        helm = {
+          releaseName = "nginx-application-from-helm"
+          valueFiles  = ["custom-values.yaml"]
+        }
+      }
+      destination = {
+        server    = "https://kubernetes.default.svc"
+        namespace = "default"
+      }
+      syncPolicy = {
+        automated = {
+                prune    = true
+                selfHeal = true
+         }
+      }
+    }
+  }
+}
