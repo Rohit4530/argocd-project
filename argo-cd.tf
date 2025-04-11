@@ -81,7 +81,7 @@ resource "kubernetes_manifest" "nginx_app" {
       namespace = "argocd"
     }
     spec = {
-      project = "default"
+      project = "nginx-project"
       source = {
         repoURL        = "https://github.com/Rohit4530/argocd-project.git"
         targetRevision = "main"
@@ -101,6 +101,33 @@ resource "kubernetes_manifest" "nginx_app" {
                 selfHeal = true
          }
       }
+    }
+  }
+}
+resource "kubernetes_manifest" "nginx_project" {
+  manifest = {
+    apiVersion = "argoproj.io/v1alpha1"
+    kind       = "AppProject"
+    metadata = {
+      name      = "nginx-project"
+      namespace = "argocd"
+    }
+    spec = {
+      sourceRepos = [
+        "https://github.com/Rohit4530/argocd-project.git"
+      ]
+      destinations = [
+        {
+          namespace = "*"
+          server    = "https://kubernetes.default.svc"
+        }
+      ]
+      clusterResourceWhitelist = [
+        {
+          group = "*"
+          kind  = "*"
+        }
+      ]
     }
   }
 }
