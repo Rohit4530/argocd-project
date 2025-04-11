@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-app
+  namespace: argocd    # 👈 Important: Argo CD watches this namespace
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Rohit4530/argocd-project.git
+    targetRevision: master
+    path: argocd-applications/helm/nginx
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated: {}
+
