@@ -8,7 +8,7 @@ spec:
   source:
     helm:
       releaseName: "application-from-helm"
-      valuesFiles:
+      valueFiles:
               - custom-values.yaml
     repoURL: https://github.com/Rohit4530/argocd-project.git
     targetRevision: master
