@@ -6,6 +6,10 @@ metadata:
 spec:
   project: default
   source:
+    helm:
+      releaseName: "application-from-helm"
+      valuesFiles:
+              - custom-values.yaml
     repoURL: https://github.com/Rohit4530/argocd-project.git
     targetRevision: master
     path: argocd-applications/helm/nginx
