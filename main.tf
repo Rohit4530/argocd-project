@@ -64,7 +64,6 @@ resource "helm_release" "nginx_ingress" {
   ]
 }
 
-# Argo CD Application for NGINX
 resource "kubernetes_manifest" "nginx_app" {
   manifest = {
     apiVersion = "argoproj.io/v1alpha1"
@@ -79,13 +78,20 @@ resource "kubernetes_manifest" "nginx_app" {
         repoURL        = "https://github.com/Rohit4530/argocd-project.git"
         targetRevision = "master"
         path           = "argocd-applications/helm/nginx"
+        helm = {
+          releaseName = "application-from-helm"
+          valueFiles  = ["custom-values.yaml"]
+        }
       }
       destination = {
         server    = "https://kubernetes.default.svc"
         namespace = "default"
       }
       syncPolicy = {
-        automated = {}
+        automated = {
+                prune    = true
+                selfHeal = true
+         }
       }
     }
   }
