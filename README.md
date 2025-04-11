@@ -1,1 +1,2 @@
-![ArgoCD UI](https://www.bing.com/images/search?view=detailV2&ccid=smtu1U0o&id=4962C2D61C9C201E92409DABC822071782459990&thid=OIP.smtu1U0oIwzQlkG7D_cMfwHaDm&mediaurl=https%3a%2f%2fmiro.medium.com%2fv2%2fresize%3afit%3a1358%2f0*zxhZTQL_zChe0Wc1.png&exph=661&expw=1358&q=argocd+with+helm+and+terraform+workflow+graph&simid=608023007714570108&FORM=IRPRST&ck=431BD6D370DEC4F7B1FFB5F9030604C5&selectedIndex=25&itb=0)
+![ArgoCD UI](https://miro.medium.com/v2/resize:fit:1358/1*34KT126mcIKdICFXFw7yxA.png)
+)
