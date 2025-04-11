@@ -54,7 +54,7 @@ resource "kubernetes_manifest" "wordpress_app" {
       source = {
         repoURL        = "https://github.com/Rohit4530/argocd-project.git"
         targetRevision = "main"
-        path           = "argocd-applications/v04-project"
+        path           = "argocd-applications/v04-project/wordpress-chart"
         helm = {
           releaseName = "application-from-helm"
          #valueFiles  = ["custom-values.yaml"]
