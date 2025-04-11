@@ -1,21 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-app
-  namespace: argocd    # 👈 Important: Argo CD watches this namespace
+  name: application-project
+  namespace: argocd   
 spec:
-  project: default
+  project: project-1
   source:
     helm:
       releaseName: "application-from-helm"
       valueFiles:
               - custom-values.yaml
     repoURL: https://github.com/Rohit4530/argocd-project.git
-    targetRevision: master
-    path: argocd-applications/helm/nginx
+    targetRevision: main
+    path: argocd-applications/v04-project/wordpress-chart
   destination:
     server: https://kubernetes.default.svc
     namespace: default
   syncPolicy:
     automated: {}
-
